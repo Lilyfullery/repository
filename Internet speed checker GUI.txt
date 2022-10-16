@@ -1,0 +1,29 @@
+from tkinter import *
+import speedtest
+def speedchecker():
+    a  = speedtest.Speedtest()
+    a.get_servers()
+    D = str(round(a.download()/(10**6),3))+" Mbps"
+    U = str(round(a.upload()/(10**6),3))+" Mbps"
+    downvalue.config(text=D)
+    uploadvalue.config(text=U)
+obj = Tk()
+obj.title("Internet Speed Test")
+obj.minsize(height="400", width="400")
+obj.maxsize(height="400", width="400")
+obj.config(bg="light blue")
+heading = Label(obj,text="Internet Speed Test", font=("Copperplate Gothic Light",20,"bold"),bg="light blue")
+heading.pack()
+downspeed = Label(obj,text="Download Speed",font=("Copperplate Gothic Light",20,"bold"))
+downspeed.place(x=60,y=70,height=30,width=270)
+downvalue = Label(obj,text="00",font=("Ariel",20,"bold"))
+downvalue.place(x=60,y=120,height=30 , width=270)
+uploadspeed = Label(obj,text="Upload Speed",font=("Copperplate Gothic Light",20,"bold"))
+uploadspeed.place(x=60,y=180,height=30,width=270)
+uploadvalue = Label(obj,text="00",font=("Ariel",20,"bold"))
+uploadvalue.place(x=60,y=230,height=30,width=270)
+chkbutton = Button(obj,text="Check",font=("Copperplate Gothic Light",20,"bold"),relief=RAISED,bg="light grey",command=speedchecker)
+chkbutton.place(x=30,y=300)
+obj.mainloop()
+
+
