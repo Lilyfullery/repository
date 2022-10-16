@@ -1,0 +1,68 @@
+from tkinter import *
+from tkinter import messagebox
+form = Tk()
+#Funtions
+def submit():
+    name = name_info.get()
+    age = age_info.get()
+    phone = phone_info.get()
+    email = email_info.get()
+    if name == "":
+        messagebox.showerror("Error","please enter your name")
+    elif age == "":
+        messagebox.showerror("error","please enter your age")
+    elif phone == "":
+        messagebox.showerror("Error","please enter your phone-number")
+    elif email == "":
+        messagebox.showerror("Error","please enter your email")
+    else:
+        sucessfull = Label(form,text="Registeration Successfull",font='bold',fg='Green')
+        sucessfull.place(x=135,y=400)
+    with open(name+".txt","w") as f:
+        f.write("name is "+name+"\n")
+        f.write("age is "+age+"\n")
+        f.write("phone number is "+phone+"\n")
+        f.write("email is "+email)
+
+def clear():
+    name_entry.delete(0,END)
+    age_entry.delete(0,END)
+    phone_entry.delete(0,END)
+    email_entry.delete(0,End)
+#image
+form.iconbitmap('forms.ico')
+#Title 
+form.title("registration form")
+#height and width 
+form.minsize(height=450,width=400)
+form.maxsize(height=350,width=400)
+#label
+heading = Label(form,text="Registration Form",font='Ariel 20 bold', bg='light blue',fg='Blue')
+heading.pack(fill='both')
+name_label = Label(form,text='Name',font='20')
+name_label.place(x=40,y=75)
+age_label = Label(form,text='Age',font='20')
+age_label.place(x=40,y=120)
+phone_label = Label(form,text='Phone Number',font='20')
+phone_label.place(x=40,y=170)
+email = Label(form,text='Email Id',font='20')
+email.place(x=40,y=220)
+#entry box
+name_info = StringVar()
+age_info = StringVar()
+phone_info = StringVar()
+email_info = StringVar()
+name_entry = Entry(form,font ='20',bd='4',textvariable=name_info)
+name_entry.place(x=170,y=75)
+age_entry = Entry(form,font='20',bd='4',textvariable=age_info)
+age_entry.place(x=170,y=120)
+phone_entry = Entry(form,font='20',bd='4',textvariable=phone_info)
+phone_entry.place(x=170,y=170)
+email_entry = Entry(form,font='20',bd='4',textvariable=email_info)
+email_entry.place(x=170,y=220)
+#button
+submit_button = Button(form,text='Submit',font=20,bd=4,command=submit)
+submit_button.place(x=40,y=290)
+clear_button = Button(form,text='Clear',font=20,bd=4,command=clear)
+clear_button.place(x=200,y = 290)
+form.mainloop()
